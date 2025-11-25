@@ -1,3 +1,5 @@
+PRAGMA foreign_keys = ON;
+
 DROP TABLE IF EXISTS SaleItem;
 DROP TABLE IF EXISTS Sale;
 DROP TABLE IF EXISTS Inventory;
@@ -19,6 +21,9 @@ CREATE TABLE Product (
     is_active   INTEGER NOT NULL DEFAULT 1
 );
 
+ALTER TABLE Product
+ADD COLUMN category TEXT NOT NULL DEFAULT 'General';
+
 CREATE TABLE Inventory (
     branch_id   INTEGER NOT NULL,
     product_id  INTEGER NOT NULL,
@@ -31,7 +36,7 @@ CREATE TABLE Inventory (
 CREATE TABLE Sale (
     sale_id        INTEGER PRIMARY KEY AUTOINCREMENT,
     branch_id      INTEGER NOT NULL,
-    sale_datetime  TEXT NOT NULL,
+    sale_datetime  TEXT NOT NULL,  
     total_amount   REAL NOT NULL,
     FOREIGN KEY (branch_id) REFERENCES StoreBranch(branch_id)
 );

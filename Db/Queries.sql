@@ -1,0 +1,61 @@
+-- ================================================================
+-- HOW TO WRITE QUERIES FOR THE CLI (READ THIS BEFORE EDITING)
+-- ================================================================
+-- 1. Every query MUST start with a comment identifying it:
+--        -- name: your_query_name
+--
+-- 2. On the line *after* the name, write the SQL query.
+--    You can write it on one line or multiple lines.
+--    Example:
+--        -- name: get_all_products
+--        SELECT *
+--        FROM Product
+--        WHERE is_active = 1;
+--
+-- 3. You may include a semicolon at the end OR leave it off.
+--    Both are accepted by the Python app.
+--
+-- 4. Do NOT leave blank lines between the name and the SQL.
+--    The query must follow IMMEDIATELY after:
+--
+--      Wrong:
+--        -- name: example
+--
+--        SELECT * FROM Product;
+--
+--      Correct:
+--        -- name: example
+--        SELECT * FROM Product;
+--
+-- 5. You can add as many queries as you want in this file.
+--    Just repeat the pattern:
+--
+--        -- name: identifier
+--        SELECT ...
+--
+-- 6. Query names MUST be unique.
+--    The Python program loads them by name.
+--
+-- 7. DO NOT remove or rename other teammates' queries.
+--    Add your queries at the bottom of the file.
+--
+-- ================================================================
+-- GOOD EXAMPLES (Copy these patterns)
+-- ================================================================
+-- -- name: sales_history
+-- SELECT sale_id, sale_datetime, total_amount
+-- FROM Sale
+-- ORDER BY sale_datetime DESC
+-- LIMIT 20;
+--
+-- -- name: top_selling_products
+-- SELECT si.product_id, p.name, SUM(si.quantity) AS total_qty
+-- FROM SaleItem si
+-- JOIN Product p ON si.product_id = p.product_id
+-- GROUP BY si.product_id, p.name
+-- ORDER BY total_qty DESC
+-- LIMIT 10;
+-- ================================================================
+
+
+-- ===== Your queries start here =====
