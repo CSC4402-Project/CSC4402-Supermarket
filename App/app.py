@@ -19,7 +19,6 @@ def list_available_products():
     conn = get_connection()
     cur = conn.cursor()
 
-    # If you DON'T have category column, remove p.category from SELECT and print.
     cur.execute("""
         SELECT p.product_id,
                p.name,
@@ -65,7 +64,7 @@ def get_product_with_stock(product_id):
     """, (product_id, BRANCH_ID))
     row = cur.fetchone()
     conn.close()
-    return row  # None if not found
+    return row  
 
 
 # ========= CART LOGIC =========
@@ -205,12 +204,12 @@ def checkout():
             """, (qty, BRANCH_ID, pid))
 
         conn.commit()
-        print(f"\n✅ Checkout completed. Sale ID: {sale_id}, Total: {total_amount:.2f}\n")
+        print(f"\n Checkout completed. Sale ID: {sale_id}, Total: {total_amount:.2f}\n")
         cart.clear()
 
     except Exception as e:
         conn.rollback()
-        print(f"\n❌ Checkout failed: {e}\n")
+        print(f"\n Checkout failed: {e}\n")
     finally:
         conn.close()
 
