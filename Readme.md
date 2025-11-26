@@ -3,7 +3,7 @@
 Fall 2025 — Group Project
 
 Group Members:
-Guido Manuel Fajardo Gabrie, Jonathan Martinez, Candor Alemu, Nathan Rodrigue
+Guido Manuel Fajardo Gabrie, Jonathan Martinez, Candor Alemu, Nathan Rodrigue, Yu Joo
 
 
 This project implements a simplified supermarket management system using:
