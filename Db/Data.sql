@@ -43,6 +43,21 @@ INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
 ('Paper Towels 6pk', 'LSU9001', 7.99, 'Household', 1),
 ('Laundry Detergent 50oz', 'LSU9002', 9.49, 'Household', 1);
 
+('Eggs 12ct', 'LSU1005', 4.99, 'Dairy', 1),
+('Salmon 1lb', 'LSU2005', 9.99, 'Meat', 1),
+  
+('Spinach 5oz', 'LSU3005', 3.49, 'Produce', 1),
+('Sourdough Bread', 'LSU4005', 4.29, 'Bakery', 1),
+  
+('Peanut Butter 16oz', 'LSU5005', 3.99, 'Pantry', 1),
+('Frozen Waffles 10ct', 'LSU6003', 3.79, 'Frozen', 1),
+  
+('Bottled Water 24pk', 'LSU7003', 4.49, 'Drinks', 1),
+('Trail Mix 10oz', 'LSU8003', 5.99, 'Snacks', 1),
+  
+('Dish Soap 22oz', 'LSU9003', 3.29, 'Household', 1),
+('Shredded Mozzarella 8oz', 'LSU1006', 3.69, 'Dairy', 1);
+
 -- ===== Inventory for LSU Market (branch_id = 1) =====
 
 INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
@@ -88,6 +103,21 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 27, 20),  -- Paper Towels
 (1, 28, 18);  -- Laundry Detergent
 
+(1, 29, 36),  -- Eggs
+(1, 30, 15),  -- Salmon
+  
+(1, 31, 42),  -- Spinach
+(1, 32, 25),  -- Sourdough Bread
+  
+(1, 33, 55),  -- Peanut Butter
+(1, 34, 38),  -- Frozen Waffles
+  
+(1, 35, 60),  -- Bottled Water
+(1, 36, 45),  -- Trail Mix
+  
+(1, 37, 30),  -- Dish Soap
+(1, 38, 40);  -- Shredded Mozzarella
+
 -- ===== Sales =====
 -- Each row = one full transaction (one receipt)
 
@@ -107,6 +137,12 @@ INSERT INTO Sale (branch_id, sale_datetime, total_amount) VALUES
 (1, '2025-11-26 18:10:00', 16.76),
 (1, '2025-11-27 14:05:00', 11.89);
 
+-- Sale 10: Eggs + Spinach + Salmon
+(1, '2025-11-28 10:30:00', 18.47),
+-- Sale 11: Water + Trail Mix + Peanut Butter + Waffles + Mozzarella
+(1, '2025-11-28 14:15:00', 21.95),
+-- Sale 12: Mozzarella + Dish Soap + Spinach + Sourdough
+(1, '2025-11-29 09:45:00', 14.26);
 
 
 -- ===== SaleItem rows for each sale =====
@@ -168,3 +204,24 @@ INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUE
 (9, 19, 1, 1.49, 0),
 (9, 20, 1, 5.49, 0),
 (9, 7, 1, 2.79, 0);
+
+-- === Sale 10: Eggs + Spinach + Salmon ===
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(10, 29, 1, 4.99, 0),  -- Organic Eggs
+(10, 31, 1, 3.49, 0),  -- Baby Spinach
+(10, 30, 1, 9.99, 0);  -- Salmon Fillet
+
+-- === Sale 11: Water + Trail Mix + Peanut Butter + Waffles + Mozzarella ===
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(11, 35, 1, 4.49, 0),  -- Bottled Water
+(11, 36, 1, 5.99, 0),  -- Trail Mix
+(11, 33, 1, 3.99, 0),  -- Peanut Butter
+(11, 34, 1, 3.79, 0),  -- Frozen Waffles
+(11, 38, 1, 3.69, 0);  -- Shredded Mozzarella
+
+-- === Sale 12: Mozzarella + Dish Soap + Spinach + Sourdough ===
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(12, 38, 1, 3.69, 0),  -- Shredded Mozzarella
+(12, 37, 1, 3.29, 0),  -- Dish Soap
+(12, 31, 1, 3.49, 0),  -- Baby Spinach
+(12, 32, 1, 3.79, 0);  -- Sourdough Bread
