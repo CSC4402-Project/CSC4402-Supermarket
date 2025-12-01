@@ -59,3 +59,74 @@
 
 
 -- ===== Your queries start here =====
+-- name: products_with_stock
+SELECT p.product_id AS id, p.name, p.category, p.unit_price, i.quantity AS stock
+FROM Product p
+JOIN Inventory i ON p.product_id = i.product_id
+WHERE p.is_active = 1
+ORDER BY p.product_id;
+
+-- name: low_stock_products
+SELECT p.product_id, p.name, p.category, i.quantity AS stock
+FROM Product p
+JOIN Inventory i ON p.product_id = i.product_id
+WHERE i.quantity < 20
+ORDER BY i.quantity ASC;
+
+-- name: recent_sales
+SELECT sale_id, sale_datetime, total_amount
+FROM Sale
+ORDER BY sale_datetime DESC
+LIMIT 10;
+
+-- name: revenue_by_day
+SELECT DATE(sale_datetime) AS sale_date,
+       SUM(total_amount) AS total_revenue,
+       COUNT(*) AS num_sales
+FROM Sale
+GROUP BY DATE(sale_datetime)
+ORDER BY sale_date DESC;
+
+-- name: top_products_by_quantity
+SELECT si.product_id, p.name, SUM(si.quantity) AS total_qty
+FROM SaleItem si
+JOIN Product p ON si.product_id = p.product_id
+GROUP BY si.product_id, p.name
+ORDER BY total_qty DESC
+LIMIT 10;
+
+-- name: revenue_by_product
+SELECT p.product_id, p.name,
+       SUM((si.unit_price - si.discount) * si.quantity) AS total_revenue
+FROM SaleItem si
+JOIN Product p ON si.product_id = p.product_id
+GROUP BY p.product_id, p.name
+ORDER BY total_revenue DESC;
+
+-- name: revenue_by_category
+SELECT p.category,
+       SUM((si.unit_price - si.discount) * si.quantity) AS category_revenue,
+       SUM(si.quantity) AS units_sold
+FROM SaleItem si
+JOIN Product p ON si.product_id = p.product_id
+GROUP BY p.category
+ORDER BY category_revenue DESC;
+
+-- name: products_sold_today
+SELECT SUM(si.quantity) AS total_units_sold
+FROM SaleItem si
+JOIN Sale s ON si.sale_id = s.sale_id
+WHERE DATE(s.sale_datetime) = DATE('now');
+
+-- name: inventory_value
+SELECT p.product_id, p.name, i.quantity, p.unit_price,
+       (i.quantity * p.unit_price) AS inventory_value
+FROM Inventory i
+JOIN Product p ON p.product_id = i.product_id
+ORDER BY inventory_value DESC;
+
+-- name: products_never_sold
+SELECT p.product_id, p.name, p.category
+FROM Product p
+LEFT JOIN SaleItem si ON p.product_id = si.product_id
+WHERE si.product_id IS NULL;
