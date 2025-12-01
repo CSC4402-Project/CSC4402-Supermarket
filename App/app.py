@@ -227,7 +227,12 @@ def show_statistics():
     print("1. Sales History")
     print("2. Top Selling Products")
     print("3. Revenue Per Day")
-    print("4. Back")
+    print("4. Inventory Counts")
+    print("5. Products Never Sold")
+    print("6. Revenue by Category")
+    print("7. Total Sales")
+    print("0. Back")
+    
     choice = input("Choose an option: ").strip()
 
     conn = get_connection()
@@ -269,8 +274,52 @@ def show_statistics():
                 for row in rows:
                     print(row)
                 print()
+        elif choice == "4":
+            sql = queries.get("inventory_counts")
+            if not sql:
+                print("Query not found: inventory_counts\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Inventory Counts ===")
+                for row in rows:
+                    print(row)
+                print()
+        elif choice == "5":
+            sql = queries.get("products_never_sold")
+            if not sql:
+                print("Query not found: products_never_sold\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Products Never Sold ===")
+                for row in rows:
+                    print(row)
+                print()
+        elif choice == "6":
+            sql = queries.get("revenue_by_category")
+            if not sql:
+                print("Query not found: revenue_by_category\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Revenue by Category ===")
+                for row in rows:
+                    print(row)
+                print()
+        elif choice == "7":
+            sql = queries.get("total_sales")
+            if not sql:
+                print("Query not found: total_sales\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Total Sales ===")
+                for row in rows:
+                    print(row)
+                print()
         else:
-            # 4 or anything else → just go back
+            # 0 or anything else → just go back
             print()
 
     finally:
