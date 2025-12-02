@@ -1,4 +1,3 @@
-
 ----- Data for Supermarket Database ----
 INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
 ('Whole Milk 1 Gal', 'LSU1001', 3.49, 'Dairy', 1),
@@ -57,6 +56,22 @@ INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
   
 ('Dish Soap 22oz', 'LSU9003', 3.29, 'Household', 1),
 ('Shredded Mozzarella 8oz', 'LSU1006', 3.69, 'Dairy', 1);
+
+('Sour Cream 16oz', 'LSU1007', 2.49, 'Dairy', 1),
+('Shrimp 1lb', 'LSU2006', 8.99, 'Meat', 1),
+  
+('Avocados 4ct', 'LSU3006', 4.49, 'Produce', 1),
+('Cinnamon Rolls 6ct', 'LSU4006', 4.99, 'Bakery', 1),
+  
+('Honey 12oz', 'LSU5006', 5.99, 'Pantry', 1),
+('Fish Sticks 12ct', 'LSU6004', 5.49, 'Frozen', 1),
+  
+('Coffee Ground 12oz', 'LSU7004', 7.99, 'Drinks', 1),
+('Tortilla Chips 13oz', 'LSU8004', 3.79, 'Snacks', 1),
+  
+('Salsa 16oz', 'LSU8005', 3.49, 'Snacks', 1),
+('Trash Bags 30ct', 'LSU9004', 8.49, 'Household', 1);
+
 
 -- ===== Inventory for LSU Market (branch_id = 1) =====
 
@@ -118,6 +133,22 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 37, 30),  -- Dish Soap
 (1, 38, 40);  -- Shredded Mozzarella
 
+(1, 39, 25),  -- Sour Cream
+(1, 40, 18),  -- Shrimp
+  
+(1, 41, 30),  -- Avocados
+(1, 42, 20),  -- Cinnamon Rolls
+  
+(1, 43, 35),  -- Honey
+(1, 44, 28),  -- Fish Sticks
+  
+(1, 45, 22),  -- Coffee Ground
+(1, 46, 40),  -- Tortilla Chips
+  
+(1, 47, 38),  -- Salsa
+(1, 48, 25);  -- Trash Bags
+
+
 -- ===== Sales =====
 -- Each row = one full transaction (one receipt)
 
@@ -143,6 +174,40 @@ INSERT INTO Sale (branch_id, sale_datetime, total_amount) VALUES
 (1, '2025-11-28 14:15:00', 21.95),
 -- Sale 12: Mozzarella + Dish Soap + Spinach + Sourdough
 (1, '2025-11-29 09:45:00', 14.26);
+
+-- Sale 13: Coffee + Cinnamon Rolls
+(1, '2025-11-29 08:15:00', 12.98),
+-- Sale 14: Tortilla Chips + Salsa + Sour Cream
+(1, '2025-11-29 14:30:00', 9.77),
+-- Sale 15: Shrimp + Rice + Avocados
+(1, '2025-11-30 11:00:00', 19.97),
+-- Sale 16: Fish Sticks + Frozen Waffles + Orange Juice
+(1, '2025-11-30 17:45:00', 13.27),
+-- Sale 17: Honey + Peanut Butter + Bread
+(1, '2025-12-01 09:20:00', 12.77),
+-- Sale 18: Trash Bags + Laundry Detergent + Dish Soap
+(1, '2025-12-01 13:00:00', 21.27),
+-- Sale 19: Coffee + Eggs + Bacon + Croissants
+(1, '2025-12-01 07:30:00', 22.56),
+-- Sale 20: Avocados + Tomatoes + Chicken + Tortilla Chips
+(1, '2025-12-02 12:15:00', 14.56);
+
+-- Sale 21: Shrimp dinner ingredients
+(1, '2025-12-02 17:30:00', 23.96),
+-- Sale 22: Breakfast run - coffee, honey, eggs
+(1, '2025-12-03 07:45:00', 17.97),
+-- Sale 23: Party supplies - chips, salsa, sour cream, soda
+(1, '2025-12-03 15:00:00', 16.26),
+-- Sale 24: Weekly cleaning supplies
+(1, '2025-12-03 10:30:00', 19.77),
+-- Sale 25: Fish sticks family dinner
+(1, '2025-12-04 18:00:00', 18.46),
+-- Sale 26: Brunch prep - cinnamon rolls, coffee, OJ, eggs
+(1, '2025-12-04 09:15:00', 21.96),
+-- Sale 27: Taco night - avocados, salsa, tortilla chips, beef, sour cream
+(1, '2025-12-05 16:45:00', 20.25),
+-- Sale 28: Mixed grocery run with honey and shrimp
+(1, '2025-12-05 11:20:00', 26.45);
 
 
 -- ===== SaleItem rows for each sale =====
@@ -225,3 +290,123 @@ INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUE
 (12, 37, 1, 3.29, 0),  -- Dish Soap
 (12, 31, 1, 3.49, 0),  -- Baby Spinach
 (12, 32, 1, 3.79, 0);  -- Sourdough Bread
+
+-- === Sale 13: Coffee + Cinnamon Rolls ===
+-- Total = 7.99 + 4.99 = 12.98
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(13, 45, 1, 7.99, 0),  -- Coffee Ground 12oz
+(13, 42, 1, 4.99, 0);  -- Cinnamon Rolls 6ct
+
+-- === Sale 14: Tortilla Chips + Salsa + Sour Cream ===
+-- Total = 3.79 + 3.49 + 2.49 = 9.77
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(14, 46, 1, 3.79, 0),  -- Tortilla Chips 13oz
+(14, 47, 1, 3.49, 0),  -- Salsa 16oz
+(14, 39, 1, 2.49, 0);  -- Sour Cream 16oz
+
+-- === Sale 15: Shrimp + Rice + Avocados ===
+-- Total = 8.99 + 6.49 + 4.49 = 19.97
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(15, 40, 1, 8.99, 0),  -- Shrimp 1lb
+(15, 9, 1, 6.49, 0),   -- Long Grain Rice 5lb
+(15, 41, 1, 4.49, 0);  -- Avocados 4ct
+
+-- === Sale 16: Fish Sticks + Frozen Waffles + Orange Juice ===
+-- Total = 5.49 + 3.79 + 3.99 = 13.27
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(16, 44, 1, 5.49, 0),  -- Fish Sticks 12ct
+(16, 34, 1, 3.79, 0),  -- Frozen Waffles 10ct
+(16, 24, 1, 3.99, 0);  -- Orange Juice 52oz
+
+-- === Sale 17: Honey + Peanut Butter + Bread ===
+-- Total = 5.99 + 3.99 + 2.79 = 12.77
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(17, 43, 1, 5.99, 0),  -- Honey 12oz
+(17, 33, 1, 3.99, 0),  -- Peanut Butter 16oz
+(17, 7, 1, 2.79, 0);   -- Sliced Wheat Bread
+
+-- === Sale 18: Trash Bags + Laundry Detergent + Dish Soap ===
+-- Total = 8.49 + 9.49 + 3.29 = 21.27
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(18, 48, 1, 8.49, 0),  -- Trash Bags 30ct
+(18, 28, 1, 9.49, 0),  -- Laundry Detergent 50oz
+(18, 37, 1, 3.29, 0);  -- Dish Soap 22oz
+
+-- === Sale 19: Coffee + Eggs + Bacon + Croissants ===
+-- Total = 7.99 + 4.99 + 5.99 + 3.59 = 22.56
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(19, 45, 1, 7.99, 0),  -- Coffee Ground 12oz
+(19, 29, 1, 4.99, 0),  -- Eggs 12ct
+(19, 14, 1, 5.99, 0),  -- Bacon 12oz
+(19, 8, 1, 3.59, 0);   -- Croissants 6ct
+
+-- === Sale 20: Avocados + Tomatoes + Chicken + Tortilla Chips ===
+-- Total = 4.49 + 1.29 + 4.99 + 3.79 = 14.56
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(20, 41, 1, 4.49, 0),  -- Avocados 4ct
+(20, 16, 1, 1.29, 0),  -- Tomatoes 1lb
+(20, 3, 1, 4.99, 0),   -- Chicken Breast 1lb
+(20, 46, 1, 3.79, 0);  -- Tortilla Chips 13oz
+
+-- === Sale 21: Shrimp dinner - Shrimp + Avocados + Rice + Butter ===
+-- Total = 8.99 + 4.49 + 6.49 + 3.89 = 23.86
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(21, 40, 1, 8.99, 0),  -- Shrimp 1lb
+(21, 41, 1, 4.49, 0),  -- Avocados 4ct
+(21, 9, 1, 6.49, 0),   -- Long Grain Rice 5lb
+(21, 12, 1, 3.89, 0);  -- Butter Salted 1lb
+
+-- === Sale 22: Breakfast - Coffee + Honey + Eggs ===
+-- Total = 7.99 + 5.99 + 4.99 = 18.97 (discount applied)
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(22, 45, 1, 7.99, 0),  -- Coffee Ground 12oz
+(22, 43, 1, 5.99, 0),  -- Honey 12oz
+(22, 29, 1, 4.99, 1.00); -- Eggs 12ct (discount)
+
+-- === Sale 23: Party - Tortilla Chips + Salsa + Sour Cream + Coca-Cola ===
+-- Total = 3.79 + 3.49 + 2.49 + 6.49 = 16.26
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(23, 46, 1, 3.79, 0),  -- Tortilla Chips 13oz
+(23, 47, 1, 3.49, 0),  -- Salsa 16oz
+(23, 39, 1, 2.49, 0),  -- Sour Cream 16oz
+(23, 23, 1, 6.49, 0);  -- Coca-Cola 12pk
+
+-- === Sale 24: Cleaning - Trash Bags + Dish Soap + Paper Towels ===
+-- Total = 8.49 + 3.29 + 7.99 = 19.77
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(24, 48, 1, 8.49, 0),  -- Trash Bags 30ct
+(24, 37, 1, 3.29, 0),  -- Dish Soap 22oz
+(24, 27, 1, 7.99, 0);  -- Paper Towels 6pk
+
+-- === Sale 25: Fish Sticks dinner - Fish Sticks x2 + Frozen Waffles + Salsa ===
+-- Total = 5.49 + 3.79 + 3.49 + 5.69 = 18.46
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(25, 44, 1, 5.49, 0),  -- Fish Sticks 12ct
+(25, 34, 1, 3.79, 0),  -- Frozen Waffles 10ct
+(25, 47, 1, 3.49, 0),  -- Salsa 16oz
+(25, 44, 1, 5.49, 0);  -- Fish Sticks 12ct (2nd pack)
+
+-- === Sale 26: Brunch - Cinnamon Rolls + Coffee + OJ + Eggs ===
+-- Total = 4.99 + 7.99 + 3.99 + 4.99 = 21.96
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(26, 42, 1, 4.99, 0),  -- Cinnamon Rolls 6ct
+(26, 45, 1, 7.99, 0),  -- Coffee Ground 12oz
+(26, 24, 1, 3.99, 0),  -- Orange Juice 52oz
+(26, 29, 1, 4.99, 0);  -- Eggs 12ct
+
+-- === Sale 27: Taco Night - Avocados + Salsa + Tortilla Chips + Ground Beef + Sour Cream ===
+-- Total = 4.49 + 3.49 + 3.79 + 5.49 + 2.49 = 19.75
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(27, 41, 1, 4.49, 0),  -- Avocados 4ct
+(27, 47, 1, 3.49, 0),  -- Salsa 16oz
+(27, 46, 1, 3.79, 0),  -- Tortilla Chips 13oz
+(27, 4, 1, 5.49, 0),   -- Ground Beef 1lb
+(27, 39, 1, 2.49, 0);  -- Sour Cream 16oz
+
+-- === Sale 28: Mixed grocery - Shrimp + Honey + Cinnamon Rolls + Salmon ===
+-- Total = 8.99 + 5.99 + 4.99 + 9.99 = 29.96 (discount applied)
+INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
+(28, 40, 1, 8.99, 0),  -- Shrimp 1lb
+(28, 43, 1, 5.99, 0),  -- Honey 12oz
+(28, 42, 1, 4.99, 0),  -- Cinnamon Rolls 6ct
+(28, 30, 1, 9.99, 3.51); -- Salmon 1lb (discount)
