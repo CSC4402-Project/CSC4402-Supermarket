@@ -224,21 +224,31 @@ def show_statistics():
     queries = load_queries()
 
     print("\n=== Statistics ===")
-    print("1. Sales History")
-    print("2. Top Selling Products")
-    print("3. Revenue Per Day")
-    print("4. Inventory Counts")
-    print("5. Products Never Sold")
-    print("6. Revenue by Category")
-    print("7. Total Sales")
-    print("0. Back")
-    
+    print(" 1. Sales History")
+    print(" 2. Top Selling Products")
+    print(" 3. Revenue Per Day")
+    print(" 4. Inventory Counts")
+    print(" 5. Products Never Sold")
+    print(" 6. Revenue by Category")
+    print(" 7. Total Sales")
+    print(" 8. Products With Stock")
+    print(" 9. Low Stock Products")
+    print("10. Recent Sales")
+    print("11. Revenue by Day")
+    print("12. Top Products by Quantity")
+    print("13. Revenue by Product")
+    print("14. Revenue & Units by Category")
+    print("15. Products Sold Today")
+    print("16. Inventory Value")
+    print("0. Back\n")
+
     choice = input("Choose an option: ").strip()
 
     conn = get_connection()
     cur = conn.cursor()
 
     try:
+        # 1
         if choice == "1":
             sql = queries.get("sales_history")
             if not sql:
@@ -251,6 +261,7 @@ def show_statistics():
                     print(row)
                 print()
 
+        # 2
         elif choice == "2":
             sql = queries.get("top_selling_products")
             if not sql:
@@ -263,6 +274,7 @@ def show_statistics():
                     print(row)
                 print()
 
+        # 3
         elif choice == "3":
             sql = queries.get("revenue_per_day")
             if not sql:
@@ -274,6 +286,8 @@ def show_statistics():
                 for row in rows:
                     print(row)
                 print()
+
+        # 4
         elif choice == "4":
             sql = queries.get("inventory_counts")
             if not sql:
@@ -285,6 +299,8 @@ def show_statistics():
                 for row in rows:
                     print(row)
                 print()
+
+        # 5
         elif choice == "5":
             sql = queries.get("products_never_sold")
             if not sql:
@@ -296,6 +312,8 @@ def show_statistics():
                 for row in rows:
                     print(row)
                 print()
+
+        # 6
         elif choice == "6":
             sql = queries.get("revenue_by_category")
             if not sql:
@@ -307,6 +325,8 @@ def show_statistics():
                 for row in rows:
                     print(row)
                 print()
+
+        # 7
         elif choice == "7":
             sql = queries.get("total_sales")
             if not sql:
@@ -318,9 +338,126 @@ def show_statistics():
                 for row in rows:
                     print(row)
                 print()
+
+        # 8
+        elif choice == "8":
+            sql = queries.get("products_with_stock")
+            if not sql:
+                print("Query not found: products_with_stock\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Products With Stock ===")
+                for row in rows:
+                    print(row)
+                print()
+
+        # 9
+        elif choice == "9":
+            sql = queries.get("low_stock_products")
+            if not sql:
+                print("Query not found: low_stock_products\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Low Stock Products ===")
+                for row in rows:
+                    print(row)
+                print()
+
+        # 10
+        elif choice == "10":
+            sql = queries.get("recent_sales")
+            if not sql:
+                print("Query not found: recent_sales\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Recent Sales ===")
+                for row in rows:
+                    print(row)
+                print()
+
+        # 11
+        elif choice == "11":
+            sql = queries.get("revenue_by_day")
+            if not sql:
+                print("Query not found: revenue_by_day\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Revenue by Day ===")
+                for row in rows:
+                    print(row)
+                print()
+
+        # 12
+        elif choice == "12":
+            sql = queries.get("top_products_by_quantity")
+            if not sql:
+                print("Query not found: top_products_by_quantity\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Top Products by Quantity ===")
+                for row in rows:
+                    print(row)
+                print()
+
+        # 13
+        elif choice == "13":
+            sql = queries.get("revenue_by_product")
+            if not sql:
+                print("Query not found: revenue_by_product\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Revenue by Product ===")
+                for row in rows:
+                    print(row)
+                print()
+
+        # 14
+        elif choice == "14":
+            sql = queries.get("revenue_and_units_by_category")
+            if not sql:
+                print("Query not found: revenue_and_units_by_category\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Revenue and Units by Category ===")
+                for row in rows:
+                    print(row)
+                print()
+
+        # 15
+        elif choice == "15":
+            sql = queries.get("products_sold_today")
+            if not sql:
+                print("Query not found: products_sold_today\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Products Sold Today ===")
+                for row in rows:
+                    print(row)
+                print()
+
+        # 16
+        elif choice == "16":
+            sql = queries.get("inventory_value")
+            if not sql:
+                print("Query not found: inventory_value\n")
+            else:
+                cur.execute(sql)
+                rows = cur.fetchall()
+                print("\n=== Inventory Value ===")
+                for row in rows:
+                    print(row)
+                print()
+
         else:
-            # 0 or anything else → just go back
-            print()
+            print()  # back or invalid input → ignore
 
     finally:
         conn.close()
