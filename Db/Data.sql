@@ -116,7 +116,7 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 26, 65),  -- Chocolate Bar
 
 (1, 27, 20),  -- Paper Towels
-(1, 28, 18);  -- Laundry Detergent
+(1, 28, 18),  -- Laundry Detergent
 
 (1, 29, 36),  -- Eggs
 (1, 30, 15),  -- Salmon
@@ -131,7 +131,7 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 36, 45),  -- Trail Mix
   
 (1, 37, 30),  -- Dish Soap
-(1, 38, 40);  -- Shredded Mozzarella
+(1, 38, 40),  -- Shredded Mozzarella
 
 (1, 39, 25),  -- Sour Cream
 (1, 40, 18),  -- Shrimp
