@@ -135,7 +135,7 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 36, 45),  -- Trail Mix
   
 (1, 37, 30),  -- Dish Soap
-(1, 38, 40);  -- Shredded Mozzarella
+(1, 38, 40),  -- Shredded Mozzarella
 
 (1, 39, 25),  -- Sour Cream
 (1, 40, 18),  -- Shrimp
@@ -384,10 +384,9 @@ INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUE
 -- === Sale 25: Fish Sticks dinner - Fish Sticks x2 + Frozen Waffles + Salsa ===
 -- Total = 5.49 + 3.79 + 3.49 + 5.69 = 18.46
 INSERT INTO SaleItem (sale_id, product_id, quantity, unit_price, discount) VALUES
-(25, 44, 1, 5.49, 0),  -- Fish Sticks 12ct
-(25, 34, 1, 3.79, 0),  -- Frozen Waffles 10ct
-(25, 47, 1, 3.49, 0),  -- Salsa 16oz
-(25, 44, 1, 5.49, 0);  -- Fish Sticks 12ct (2nd pack)
+(25, 44, 2, 5.49, 0), -- Fish Sticks 12ct x2
+(25, 47, 1, 3.79, 0), -- Frozen Waffles 10ct
+(25, 37, 1, 3.49, 0); -- Salsa 16oz
 
 -- === Sale 26: Brunch - Cinnamon Rolls + Coffee + OJ + Eggs ===
 -- Total = 4.99 + 7.99 + 3.99 + 4.99 = 21.96
