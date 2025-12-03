@@ -1,4 +1,8 @@
 ----- Data for Supermarket Database ----
+INSERT INTO StoreBranch (name, address, phone) VALUES
+('LSU Market - Main Campus', '123 LSU Ave, Baton Rouge, LA', '225-555-1234');
+
+-- ===== Products =====
 INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
 ('Whole Milk 1 Gal', 'LSU1001', 3.49, 'Dairy', 1),
 ('Cheddar Cheese 8oz', 'LSU1002', 3.99, 'Dairy', 1),
@@ -13,7 +17,7 @@ INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
 ('Croissants 6ct', 'LSU4002', 3.59, 'Bakery', 1),
 
 ('Long Grain Rice 5lb', 'LSU5001', 6.49, 'Pantry', 1),
-('Black Beans Canned 15oz', 'LSU5002', 1.29, 'Pantry', 1)
+('Black Beans Canned 15oz', 'LSU5002', 1.29, 'Pantry', 1),
 
 ('Greek Yogurt 4ct', 'LSU1003', 4.29, 'Dairy', 1),
 ('Butter Salted 1lb', 'LSU1004', 3.89, 'Dairy', 1),
@@ -40,7 +44,7 @@ INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
 ('Chocolate Bar', 'LSU8002', 1.49, 'Snacks', 1),
 
 ('Paper Towels 6pk', 'LSU9001', 7.99, 'Household', 1),
-('Laundry Detergent 50oz', 'LSU9002', 9.49, 'Household', 1);
+('Laundry Detergent 50oz', 'LSU9002', 9.49, 'Household', 1),
 
 ('Eggs 12ct', 'LSU1005', 4.99, 'Dairy', 1),
 ('Salmon 1lb', 'LSU2005', 9.99, 'Meat', 1),
@@ -55,7 +59,7 @@ INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
 ('Trail Mix 10oz', 'LSU8003', 5.99, 'Snacks', 1),
   
 ('Dish Soap 22oz', 'LSU9003', 3.29, 'Household', 1),
-('Shredded Mozzarella 8oz', 'LSU1006', 3.69, 'Dairy', 1);
+('Shredded Mozzarella 8oz', 'LSU1006', 3.69, 'Dairy', 1),
 
 ('Sour Cream 16oz', 'LSU1007', 2.49, 'Dairy', 1),
 ('Shrimp 1lb', 'LSU2006', 8.99, 'Meat', 1),
@@ -116,7 +120,7 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 26, 65),  -- Chocolate Bar
 
 (1, 27, 20),  -- Paper Towels
-(1, 28, 18);  -- Laundry Detergent
+(1, 28, 18),  -- Laundry Detergent
 
 (1, 29, 36),  -- Eggs
 (1, 30, 15),  -- Salmon
@@ -131,7 +135,8 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 36, 45),  -- Trail Mix
   
 (1, 37, 30),  -- Dish Soap
-(1, 38, 40);  -- Shredded Mozzarella
+(1, 38, 40),  -- Shredded Mozzarella
+
 
 (1, 39, 25),  -- Sour Cream
 (1, 40, 18),  -- Shrimp
@@ -160,20 +165,19 @@ INSERT INTO Sale (branch_id, sale_datetime, total_amount) VALUES
 -- Sale 3: beef + rice + beans
 (1, '2025-11-24 13:30:00', 14.56),
 -- Sale 4: cheese + croissants
-(1, '2025-11-25 09:10:00', 19.15)
-
+(1, '2025-11-25 09:10:00', 19.15),
 (1, '2025-11-25 12:45:00', 12.67),
 (1, '2025-11-25 15:20:00', 7.47),
 (1, '2025-11-26 09:30:00', 21.95),
 (1, '2025-11-26 18:10:00', 16.76),
-(1, '2025-11-27 14:05:00', 11.89);
+(1, '2025-11-27 14:05:00', 11.89),
 
 -- Sale 10: Eggs + Spinach + Salmon
 (1, '2025-11-28 10:30:00', 18.47),
 -- Sale 11: Water + Trail Mix + Peanut Butter + Waffles + Mozzarella
 (1, '2025-11-28 14:15:00', 21.95),
 -- Sale 12: Mozzarella + Dish Soap + Spinach + Sourdough
-(1, '2025-11-29 09:45:00', 14.26);
+(1, '2025-11-29 09:45:00', 14.26),
 
 -- Sale 13: Coffee + Cinnamon Rolls
 (1, '2025-11-29 08:15:00', 12.98),
@@ -190,7 +194,7 @@ INSERT INTO Sale (branch_id, sale_datetime, total_amount) VALUES
 -- Sale 19: Coffee + Eggs + Bacon + Croissants
 (1, '2025-12-01 07:30:00', 22.56),
 -- Sale 20: Avocados + Tomatoes + Chicken + Tortilla Chips
-(1, '2025-12-02 12:15:00', 14.56);
+(1, '2025-12-02 12:15:00', 14.56),
 
 -- Sale 21: Shrimp dinner ingredients
 (1, '2025-12-02 17:30:00', 23.96),
