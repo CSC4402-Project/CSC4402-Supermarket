@@ -59,6 +59,7 @@
 
 
 -- ===== Your queries start here =====
+
 -- name: products_with_stock
 SELECT p.product_id AS id, p.name, p.category, p.unit_price, i.quantity AS stock
 FROM Product p
@@ -103,7 +104,7 @@ JOIN Product p ON si.product_id = p.product_id
 GROUP BY p.product_id, p.name
 ORDER BY total_revenue DESC;
 
--- name: revenue_by_category
+-- name: revenue_and_units_by_category
 SELECT p.category,
        SUM((si.unit_price - si.discount) * si.quantity) AS category_revenue,
        SUM(si.quantity) AS units_sold
@@ -124,13 +125,6 @@ SELECT p.product_id, p.name, i.quantity, p.unit_price,
 FROM Inventory i
 JOIN Product p ON p.product_id = i.product_id
 ORDER BY inventory_value DESC;
-
--- name: products_never_sold
-SELECT p.product_id, p.name, p.category
-FROM Product p
-LEFT JOIN SaleItem si ON p.product_id = si.product_id
-WHERE si.product_id IS NULL;
-
 
 -- name: sales_history
 SELECT sale_id, sale_datetime, total_amount

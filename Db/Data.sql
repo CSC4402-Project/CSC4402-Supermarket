@@ -135,8 +135,7 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 36, 45),  -- Trail Mix
   
 (1, 37, 30),  -- Dish Soap
-(1, 38, 40),  -- Shredded Mozzarella
-
+(1, 38, 40);  -- Shredded Mozzarella
 
 (1, 39, 25),  -- Sour Cream
 (1, 40, 18),  -- Shrimp
