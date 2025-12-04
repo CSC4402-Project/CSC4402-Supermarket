@@ -91,6 +91,21 @@ INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
 ('Chocolate Chip Cookies 12ct', 'LSU4008', 5.99, 'Bakery', 1),
 ('Jelly Grape 16oz', 'LSU5007', 2.99, 'Pantry', 1);
 
+('White Rice 2 lb bag', 'LSU5006', 2.49, 'Pantry', 1),
+('Tomato Sauce 24 oz', 'LSU5007', 1.89, 'Pantry', 1),
+  
+('Carrots 1 lb bag', 'LSU3006', 1.29, 'Produce', 1),
+('Avocados 2ct', 'LSU3007', 2.49, 'Produce', 1),
+  
+('Almond Milk 1 Gal', 'LSU1007', 3.79, 'Dairy', 1),
+('Turkey Breast Sliced 1lb', 'LSU2006', 6.49, 'Meat', 1),
+  
+('Rye Bread 1 loaf', 'LSU4006', 3.99, 'Bakery', 1),
+('Canned Corn 15oz', 'LSU5008', 1.39, 'Pantry', 1),
+  
+('Frozen Mixed Vegetables 16oz', 'LSU6004', 2.99, 'Frozen', 1),
+('Green Tea Bags 20ct', 'LSU7004', 3.49, 'Drinks', 1);
+
 -- ===== Inventory for LSU Market (branch_id = 1) =====
 
 INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
@@ -181,6 +196,20 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 57, 25),  -- Chocolate Chip Cookies 12ct
 (1, 58, 40);  -- Jelly Grape 16oz
 
+(1, 39, 50),  -- White Rice 2 lb bag (Pantry)
+(1, 40, 45),  -- Tomato Sauce 24 oz (Pantry)
+  
+(1, 41, 50),  -- Carrots 1 lb bag (Produce)
+(1, 42, 30),  -- Avocados 2ct (Produce)
+  
+(1, 43, 25),  -- Almond Milk 1 Gal (Dairy)
+(1, 44, 20),  -- Turkey Breast Sliced 1lb (Meat)
+  
+(1, 45, 35),  -- Rye Bread 1 loaf (Bakery)
+(1, 46, 40),  -- Canned Corn 15oz (Pantry)
+  
+(1, 47, 30),  -- Frozen Mixed Vegetables 16oz (Frozen)
+(1, 48, 25);  -- Green Tea Bags 20ct (Drinks)
 -- ===== Sales =====
 -- Each row = one full transaction (one receipt)
 
