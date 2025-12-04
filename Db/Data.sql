@@ -164,7 +164,7 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 46, 40),  -- Tortilla Chips
   
 (1, 47, 38),  -- Salsa
-(1, 48, 25);  -- Trash Bags
+(1, 48, 25),  -- Trash Bags
 
 (1, 49, 35),  -- Almond Milk 1 Gal
 (1, 50, 28),  -- Feta Cheese 8oz
