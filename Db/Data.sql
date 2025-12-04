@@ -76,6 +76,20 @@ INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
 ('Salsa 16oz', 'LSU8005', 3.49, 'Snacks', 1),
 ('Trash Bags 30ct', 'LSU9004', 8.49, 'Household', 1);
 
+('Almond Milk 1 Gal', 'LSU1008', 3.79, 'Dairy', 1),
+('Feta Cheese 8oz', 'LSU1009', 4.49, 'Dairy', 1),
+  
+('Cream Cheese 8oz', 'LSU1010', 2.99, 'Dairy', 1),
+('Turkey Breast 1lb', 'LSU2007', 5.49, 'Meat', 1),
+  
+('Tilapia Fillet 1lb', 'LSU2008', 7.99, 'Meat', 1),
+('Strawberries 1lb', 'LSU3007', 3.99, 'Produce', 1),
+  
+('Cucumber 1ct', 'LSU3008', 1.29, 'Produce', 1),
+('Whole Wheat Bread', 'LSU4007', 3.49, 'Bakery', 1),
+  
+('Chocolate Chip Cookies 12ct', 'LSU4008', 5.99, 'Bakery', 1),
+('Jelly Grape 16oz', 'LSU5007', 2.99, 'Pantry', 1);
 
 -- ===== Inventory for LSU Market (branch_id = 1) =====
 
@@ -152,6 +166,20 @@ INSERT INTO Inventory (branch_id, product_id, quantity) VALUES
 (1, 47, 38),  -- Salsa
 (1, 48, 25);  -- Trash Bags
 
+(1, 49, 35),  -- Almond Milk 1 Gal
+(1, 50, 28),  -- Feta Cheese 8oz
+  
+(1, 51, 40),  -- Cream Cheese 8oz
+(1, 52, 22),  -- Turkey Breast 1lb
+  
+(1, 53, 18),  -- Tilapia Fillet 1lb
+(1, 54, 50),  -- Strawberries 1lb
+  
+(1, 55, 45),  -- Cucumber 1ct
+(1, 56, 30),  -- Whole Wheat Bread
+  
+(1, 57, 25),  -- Chocolate Chip Cookies 12ct
+(1, 58, 40);  -- Jelly Grape 16oz
 
 -- ===== Sales =====
 -- Each row = one full transaction (one receipt)
