@@ -74,7 +74,7 @@ INSERT INTO Product (name, barcode, unit_price, category, is_active) VALUES
 ('Tortilla Chips 13oz', 'LSU8004', 3.79, 'Snacks', 1),
   
 ('Salsa 16oz', 'LSU8005', 3.49, 'Snacks', 1),
-('Trash Bags 30ct', 'LSU9004', 8.49, 'Household', 1);
+('Trash Bags 30ct', 'LSU9004', 8.49, 'Household', 1),
 
 ('Almond Milk 1 Gal', 'LSU1008', 3.79, 'Dairy', 1),
 ('Feta Cheese 8oz', 'LSU1009', 4.49, 'Dairy', 1),
