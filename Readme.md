@@ -1,99 +1,177 @@
-🛒 CSC4402 Supermarket Database System
+# CSC4402 Supermarket Database System – Deployment Instructions
 
-Fall 2025 — Group Project
+This document explains how to build the database, load the data, and run the Python CLI application for the LSU Market system. It works for both macOS and Windows.
 
-Group Members:
-Guido Manuel Fajardo Gabrie, Jonathan Martinez, Candor Alemu, Nathan Rodrigue, Yu Joo
+---
 
+## 1. Project Structure
 
-This project implements a simplified supermarket management system using:
-	•	SQLite as the database engine
-	•	Python CLI as the application interface
-	•	SQL scripts for schema, sample data, and statistics queries
-
-The system supports inventory management, product listings, checkout functionality, and custom SQL-based analytics.
-
-⸻
-
-📁 Project Structure
-
+```
 CSC4402-Supermarket/
 │
 ├── db/
-│   ├── schema.sql        → Database table definitions
-│   ├── data.sql          → Initial data (branch, products, inventory, sample sales)
-│   ├── queries.sql       → User-created SQL queries for Statistics menu
-│   └── supermarket.db    → The actual SQLite database file (generated after setup)
+│   ├── schema.sql
+│   ├── data.sql
+│   ├── queries.sql
+│   └── supermarket.db   (generated after setup)
 │
 └── App/
-    └── app.py            → Python CLI (main application)
+    └── app.py
+```
 
-You will mostly work inside the db/ directory.
+---
 
-⸻
+## 2. Requirements
 
-🧱 Features Implemented
+- Python 3.8 or newer  
+- SQLite 3
 
-✔ Database Schema
+---
 
-Includes the following tables:
-	•	StoreBranch
-	•	Product
-	•	Inventory
-	•	Sale
-	•	SaleItem
+## 3. Installing SQLite
 
-✔ CLI Application
+### macOS
+Most macOS systems already have SQLite:
 
-The Python CLI supports:
-	1.	List available products
-	2.	Add product to cart
-	3.	View cart
-	4.	Checkout
-	•	Inserts a new Sale record
-	•	Inserts SaleItem rows
-	•	Updates inventory automatically
-	5.	Statistics
-	•	Loads SQL queries from queries.sql
-	•	Runs them dynamically
-	6.	Exit
-
-✔ Preloaded Data
-
-data.sql includes:
-	•	LSU Market branch
-	•	Sample products
-	•	Initial inventory
-	•	Test sales data
-
-⸻
-
-🔧 Setup Instructions
-
-1. Install SQLite (if needed)
-
-macOS already has SQLite installed.
-To verify:
-
+```bash
 sqlite3 --version
+```
 
-2. Build the database
+If the command is not found:
 
-From the project root:
+```bash
+brew install sqlite
+```
 
+### Windows
+1. Download SQLite tools: https://www.sqlite.org/download.html  
+2. Extract the folder (for example into `C:\sqlite`).  
+3. Add that folder to PATH, or run commands from inside it.
+
+Verify installation:
+
+```cmd
+sqlite3 --version
+```
+
+---
+
+## 4. Build the Database
+
+All commands below assume you are inside the **project root folder**.
+
+### Step 1 — Move into the db folder
+
+macOS/Linux:
+```bash
 cd db
+```
+
+Windows:
+```cmd
+cd db
+```
+
+### Step 2 — Delete any existing database (clean rebuild)
+
+macOS:
+```bash
 rm supermarket.db
+```
+
+Windows (Command Prompt):
+```cmd
+del supermarket.db
+```
+
+Windows (PowerShell):
+```powershell
+Remove-Item supermarket.db
+```
+
+### Step 3 — Run the schema to create all tables
+
+macOS/Linux:
+```bash
 sqlite3 supermarket.db < schema.sql
+```
+
+Windows:
+```cmd
+sqlite3 supermarket.db < schema.sql
+```
+
+### Step 4 — Load the initial data
+
+macOS/Linux:
+```bash
 sqlite3 supermarket.db < data.sql
+```
 
-3. Run the CLI
+Windows:
+```cmd
+sqlite3 supermarket.db < data.sql
+```
 
-cd ../App
-python3 app.py
+### Step 5 — (Optional) Verify tables exist
+
+```bash
+sqlite3 supermarket.db
+```
+
+Inside the SQLite shell, run:
+
+```sql
+.tables
+```
 
 You should see:
 
+```
+Inventory  Product  Sale  SaleItem  StoreBranch
+```
+
+Exit:
+
+```sql
+.quit
+```
+
+---
+
+## 5. Run the CLI Application
+
+From the project root:
+
+### Step 1 — Enter the App directory
+
+macOS/Linux:
+```bash
+cd App
+```
+
+Windows:
+```cmd
+cd App
+```
+
+### Step 2 — Run the app
+
+macOS/Linux:
+```bash
+python3 app.py
+```
+
+Windows:
+```cmd
+python app.py
+```
+
+If everything is correct, you will see:
+
+```
 Connected to LSU Market database.
+
 === LSU Market CLI ===
 1. List available products
 2. Add product to cart
@@ -101,134 +179,49 @@ Connected to LSU Market database.
 4. Checkout
 5. Statistics
 6. Exit
+```
 
+---
 
-⸻
+## 6. Queries File (queries.sql)
 
-📝 Adding Products or Inventory (MAIN TASK FOR TEAM MEMBERS)
+All statistics and test queries are stored in:
 
-To add or update products, edit:
-
-db/data.sql
-
-Example:
-
-INSERT INTO Product (name, barcode, unit_price, is_active)
-VALUES ('Orange Juice', 'OJ-100', 2.99, 1);
-
-INSERT INTO Inventory (branch_id, product_id, quantity)
-VALUES (1, LAST_INSERTED_PRODUCT_ID, 50);
-
-After editing, rebuild the database:
-
-rm supermarket.db
-sqlite3 supermarket.db < schema.sql
-sqlite3 supermarket.db < data.sql
-
-
-⸻
-
-📊 Adding Queries (MAIN TASK FOR TEAM MEMBERS)
-
-All analytics / test queries go in:
-
+```
 db/queries.sql
+```
 
-The Python app loads and executes them automatically.
+Format required:
 
-FORMAT RULES (FOLLOW EXACTLY):
-
--- name: your_query_name
+```
+-- name: unique_query_name
 SELECT ...
 FROM ...
 WHERE ...;
+```
 
-Rules:
-	•	Query name must be unique
-	•	Query must start immediately after the -- name: line
-	•	Semicolon is optional
-	•	Add your queries at the bottom
-	•	Do NOT modify other teammates’ queries
+The Python app loads these queries automatically and maps them to the Statistics menu.
 
-Example:
+---
 
--- name: total_sales
-SELECT COUNT(*) FROM Sale;
+## 7. Rebuilding the Entire System
 
-These queries show up automatically in the Statistics menu.
+If the database becomes corrupted or you need a clean start:
 
-⸻
+```
+cd db
+rm supermarket.db      (or del supermarket.db on Windows)
+sqlite3 supermarket.db < schema.sql
+sqlite3 supermarket.db < data.sql
+```
 
-🧪 Required Test Queries
+Then run the application again:
 
-We must include 5 test queries for grading.
-These can include:
-	•	Total sales
-	•	Top-selling product
-	•	Daily revenue
-	•	Inventory counts
-	•	Products never sold
+```
+cd ../App
+python3 app.py
+```
 
-Each teammate can contribute one or more.
+---
 
-⸻
-
-🧩 Code Overview (app.py)
-
-app.py handles:
-	•	Product listing
-	•	Cart management
-	•	Checkout logic
-	•	Inventory updates
-	•	Sale + SaleItem creation
-	•	Query loader for statistics
-	•	Main menu loop
-
-You do NOT need to modify app.py unless adding extra features.
-
-⸻
-
-👥 Team Member Contributions
-
-This is the work we have to do:
-
-Each of us will do 10 groceries for the data population that way it wil be easier to fill it
-
-E-R diagram: @Guido Fajardo @jack(yu joo) 
-Relational schema: @JonathanMartinez @nathanielb @ccaannddyy112233 
-Data generation: @everyone  10 each
-Test queries: @jack(yu joo) 
-Application user interfaces: @Guido Fajardo 
-
-
-⸻
-
-🧹 Notes
-	•	Keep code and SQL clean and readable.
-	•	Do NOT modify the database schema unless coordinated with the whole team.
-	•	If you break the DB, simply rebuild using schema.sql + data.sql.
-
-⸻
-
-✅ Final Deliverables
-
-PDF Report (8 pages max)
-
-Includes:
-	1.	Enterprise description
-	2.	ER diagram
-	3.	Relational schema
-	4.	Sample test queries + outputs
-	5.	Screenshots of CLI interfaces
-	6.	Participation breakdown
-
-ZIP File
-
-Includes:
-	•	db/ directory
-	•	App/ directory
-	•	All SQL + Python files
-	•	README
-	•	Instructions to run
-
-⸻
+This is all that is required to deploy, run, and test the CSC4402 Supermarket Database System.
